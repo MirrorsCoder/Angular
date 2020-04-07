@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<h1 ng-class="{'btn-primary':temp}">{{name}}</h1>
+			<div class="btn btn-success" ng-click="name='李四'">修改姓名</div>
+			<div class="btn btn-success" ng-click="change()">修改姓名2</div>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			$scope.temp=false;
+			$scope.name="张三";
+			$scope.change = function(){
+				$scope.name='李四';
+				$scope.temp=true;
+			}
+		}])
+	</script>
+</html>

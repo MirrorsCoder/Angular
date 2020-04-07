@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<select ng-model="province" ng-options="item.id as item.name for item in provinceList">
+				<option value ="">---请选择省份---</option>
+			</select>
+						<select ng-model="city" ng-options="item.id as item.name for item in cityList|filter:{'parentId':province}">
+				<option value ="">---请选择市---</option>
+			</select>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			$scope.provinceList=[
+				{"id":1,"name":"北京"},
+				{"id":2,"name":"上海"},
+				{"id":3,"name":"山东"}
+			]
+			$scope.cityList=[
+				{"id":1,"name":"北京","parentId":1},
+				{"id":2,"name":"上海","parentId":2},
+				{"id":3,"name":"济南","parentId":3},
+				{"id":4,"name":"青岛","parentId":3}
+			]
+		}])
+	</script>
+</html>

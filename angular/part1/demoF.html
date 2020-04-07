@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body>
+		<div ng-controller="ctrl">
+			<h1>{{title}}</h1>
+			<h1>{{contents}}</h1>
+		</div>
+		<div ng-controller="ctrl1">
+			<h1>{{title}}</h1>
+			<h1>{{contents}}</h1>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope","$rootScope",function($scope,$rootScope){
+			$scope.title="控制器一";
+			$rootScope.contents="写在rootscope里面的内容";
+		}]),
+		myapp.controller("ctrl1",["$scope",function($scope){
+			
+		}])
+	</script>
+</html>

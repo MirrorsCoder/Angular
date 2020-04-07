@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<h1>{{num}}</h1>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope","$interval",function($scope,$interval){
+			$scope.num=0;
+			// setInterval(function(){
+			// 	$scope.$apply(function(){
+			// 		$scope.num++;
+			// 	})
+			// },1000)
+			var timer=$interval(function(){
+				$scope.num++;
+				if($scope.num==10){
+					$interval.cancel(timer);
+				}
+			},1000)
+		}])
+	</script>
+</html>

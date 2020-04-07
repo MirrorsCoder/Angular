@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th ng-click="clickOrder('id')">id</th>
+						<th ng-click="clickOrder('name')">名称</th>
+						<th ng-click="clickOrder('type')">类型</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="l in list|orderBy:orderName:sort">
+						<td>{{l.id}}</td>
+						<td>{{l.name}}</td>
+						<td>{{l.typeName}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", function($scope) {
+			$scope.orderName = "id";
+			$scope.list = [{
+					"id": 1,
+					"name": "北京",
+					"type": "b",
+					"typeName": "直辖市"
+				},
+				{
+					"id": 2,
+					"name": "上海",
+					"type": "b",
+					"typeName": "直辖市"
+				},
+				{
+					"id": 3,
+					"name": "山东",
+					"type": "a",
+					"typeName": "省份"
+				},
+				{
+					"id": 4,
+					"name": "江苏",
+					"type": "a",
+					"typeName": "省份"
+				},
+				{
+					"id": 5,
+					"name": "浙江",
+					"type": "a",
+					"typeName": "省份"
+				}
+			]
+			$scope.sort = false;
+			$scope.clickOrder = function(order) {
+				if ($scope.orderName == order) {
+					$scope.sort = !$scope.sort;
+				} else {
+					$scope.orderName = order;
+					$scope.sort = false;
+				}
+			}
+		}])
+	</script>
+</html>

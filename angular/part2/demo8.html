@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<h1>{{10.58485|Round}}</h1>
+		<h1>{{10|multi:5}}</h1>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			
+		}])
+		myapp.filter("Round",[function(){
+			return function(data){
+				return Math.round(data);
+			}
+		}])
+		myapp.filter("multi",[function(){
+			return function(data,number){
+				return data*number;
+			}
+		}])
+	</script>
+</html>

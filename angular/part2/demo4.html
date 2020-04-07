@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<h1>按照名称排序</h1>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>名称</th>
+						<th>类型</th>
+						<th>类型名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="l in list|orderBy:'name'">
+						<td>{{l.id}}</td>
+						<td>{{l.name}}</td>
+						<td>{{l.type}}</td>
+						<td>{{l.typeName}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h1>按照类型排序</h1>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>名称</th>
+						<th>类型</th>
+						<th>类型名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="l in list|orderBy:'type'">
+						<td>{{l.id}}</td>
+						<td>{{l.name}}</td>
+						<td>{{l.type}}</td>
+						<td>{{l.typeName}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h1>按照类型 倒序排序</h1>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>名称</th>
+						<th>类型</th>
+						<th>类型名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="l in list|orderBy:'type':true">
+						<td>{{l.id}}</td>
+						<td>{{l.name}}</td>
+						<td>{{l.type}}</td>
+						<td>{{l.typeName}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h1>按照类型 倒序排序第二种方式</h1>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>名称</th>
+						<th>类型</th>
+						<th>类型名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="l in list|orderBy:'-type'">
+						<td>{{l.id}}</td>
+						<td>{{l.name}}</td>
+						<td>{{l.type}}</td>
+						<td>{{l.typeName}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<h1>按照两种字段排序</h1>
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>id</th>
+						<th>名称</th>
+						<th>类型</th>
+						<th>类型名称</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="l in list|orderBy:['type','-id']">
+						<td>{{l.id}}</td>
+						<td>{{l.name}}</td>
+						<td>{{l.type}}</td>
+						<td>{{l.typeName}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", function($scope) {
+			$scope.list = [{
+					"id": 1,
+					"name": "北京",
+					"type": "b",
+					"typeName": "直辖市"
+				},
+				{
+					"id": 2,
+					"name": "上海",
+					"type": "b",
+					"typeName": "直辖市"
+				},
+				{
+					"id": 3,
+					"name": "山东",
+					"type": "a",
+					"typeName": "省份"
+				},
+				{
+					"id": 4,
+					"name": "江苏",
+					"type": "a",
+					"typeName": "省份"
+				},
+				{
+					"id": 5,
+					"name": "浙江",
+					"type": "a",
+					"typeName": "省份"
+				}
+			]
+		}])
+	</script>
+</html>

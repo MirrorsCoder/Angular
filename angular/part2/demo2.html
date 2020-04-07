@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<div class="form-group-lg">
+				<select class="form-control" ng-options="a for a in names" ng-model="name">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+			<div class="form-group-lg">
+				<select class="form-control" ng-options="city.name for city in cityList" ng-model="myCity">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+			<div class="form-group-lg">
+				<h1>{{myCity}}</h1>
+			</div>
+			<div class="form-group-lg">
+				<select class="form-control" ng-options="city.id as city.name for city in cityList" ng-model="myCity1">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+			<div class="form-group-lg">
+				<h1>{{myCity1}}</h1>
+			</div>
+			<div class="form-group-lg">
+				<select class="form-control" ng-options="city.id as city.name group by city.type for city in cityList" ng-model="myCity2">
+					<option value="">--请选择--</option>
+				</select>
+			</div>
+			<div class="form-group-lg">
+				<h1>{{myCity2}}</h1>
+			</div>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", function($scope) {
+			$scope.names = ["zhangsan", "lisi", "wangwu"];
+			// $scope.name="zhangsan";
+			$scope.cityList = [{
+					"id": 1,
+					"name": "上海",
+					"type": "上海"
+				},
+				{
+					"id": 2,
+					"name": "北京",
+					"type": "北京"
+				},
+				{
+					"id": 3,
+					"name": "济南",
+					"type": "山东"
+				},
+				{
+					"id": 4,
+					"name": "青岛",
+					"type": "山东"
+				},
+				{
+					"id": 5,
+					"name": "烟台",
+					"type": "山东"
+				}
+			]
+		}])
+	</script>
+</html>

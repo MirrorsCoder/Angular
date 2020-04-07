@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<span class="btn btn-primary" ng-click="getData()">方式一</span>
+			<span class="btn btn-primary" ng-click="getData1()">方式二</span>
+			<span class="btn btn-primary" ng-click="getData2()">方式三</span>
+			<table class="table table-bordered" ng-if="list.length>0">
+				<thead>
+					<tr>
+						<th ng-repeat="(key,value) in list[0]">{{key}}</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="l in list track by $index">
+						<td ng-repeat="(key,value) in l">{{value}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", "$http", function($scope, $http) {
+			$scope.list = [];
+			$scope.getData = function() {
+				$scope.list = [];
+				$http({
+					method: "GET",
+					url: "js/data.json"
+				}).then(function(response) {
+					console.log(JSON.stringify(response));
+					$scope.list = response.data;
+				}, function(response) {
+
+				})
+			}
+			$scope.getData1 = function() {
+				$scope.list = [];
+				$http.get("js/data.json").then(function(res){
+					$scope.list=res.data;
+					$scope.list.push($scope.list[0]);
+				})
+			}
+			$scope.getData2 = function() {
+				$scope.list = [];
+				$http.post("js/data.json").then(function(res){
+					$scope.list=res.data;
+				})
+			}
+		}])
+	</script>
+</html>

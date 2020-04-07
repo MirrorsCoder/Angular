@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<ul>
+			<li ng-repeat="s in scores">
+				<h2>{{s.name}}-{{s.score}}</h2>
+			</li>
+		</ul>
+		<hr>
+		<ul>
+			<li ng-repeat="(key,value) in person">
+				<h2>{{key}}-{{value}}</h2>
+			</li>
+		</ul>
+		<hr >
+		<ul>
+			<li ng-repeat="s in scores">
+				<h2 ng-repeat="(key,value) in s">{{key}}-{{value}}</h2>
+			</li>
+		</ul>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", function($scope) {
+			$scope.scores = [{
+						"name": "语文",
+						"score": 88
+					},
+					{
+						"name": "数学",
+						"score": 100
+					},
+					{
+						"name": "英语",
+						"score": 98
+					}
+				],
+				$scope.person = {
+					"name": "张三",
+					"age": 18
+				}
+		}])
+	</script>
+</html>

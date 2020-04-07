@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<h1>货币符号过滤器:{{10000|currency}}</h1>
+		<h1>货币符号过滤器:{{10000|currency:"￥"}}</h1>
+		<h1>日期过滤器:{{now|date:"yyyy-MM-dd"}}</h1>
+		<h1>日期过滤器:{{now|date:"yyyy-MM-dd HH:mm:ss"}}</h1>
+		<h1>number过滤器:{{100.2584895|number:2}}</h1><!-- 四舍五入 -->
+		<h1>limitTo过滤器:{{"胡说八道几乎都是第三方"|limitTo:3}}...</h1>
+		<h1>小写过滤器:{{"fcsdfsDTRDRT"|lowercase}}</h1>
+		<h1>大写过滤器:{{"fcsdfsDTRDRT"|uppercase}}</h1>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			$scope.now = new Date();
+		}])
+	</script>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<h1>{{message}}</h1>
+			<h2>{{num}}</h2>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope","calc",function($scope,calc){
+			$scope.message=calc.msg;
+			$scope.num=calc.sum(3,5);
+		}])
+		myapp.factory("calc",["numbers",function(numbers){
+			return{
+				msg:"Hello angular!",
+				n:10,
+				sum:function(a,b){
+					return (a+b)*numbers.multi;
+				},
+				minus:function(a,b){
+					return a-b;
+				}
+			}
+		}])
+		myapp.factory("numbers",[function(){
+			return{
+				multi:20
+			}
+		}])
+	</script>
+</html>

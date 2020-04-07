@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+		<script src="../js/angular-route.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<nav class="navbar navbar-inverse">
+			<ul class="nav navbar-nav">
+				<li><a href="#!/">首页</a></li>
+				<li><a href="#!/list">列表</a></li>
+				<li><a href="#!/function">功能</a></li>
+			</ul>
+		</nav>
+		<div class="container">
+			<div ng-view></div>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app", ["ngRoute"]); <!--增加路由模块-->
+		myapp.config(["$routeProvider", function($routeProvider) {
+			$routeProvider.when("/", {
+				"templateUrl": "view/home.html",
+				"controller": "homeCtrl"
+			}).when("/list", {
+				"templateUrl": "view/list.html",
+				"controller": "listCtrl"
+			}).when("/function", {
+				"templateUrl": "view/function.html",
+				"controller": "funCtrl"
+			}).when("/details/:name", {
+				"templateUrl": "view/details.html",
+				"controller": "detailsCtrl"
+			}).otherwise("/");
+		}])
+		myapp.controller("homeCtrl", ["$scope", function($scope) {
+			$scope.title = "首页的内容";
+		}])
+		myapp.controller("listCtrl", ["$scope", function($scope) {
+			$scope.title = "列表的内容";
+			$scope.list = [{
+					"name": "lily",
+					"age": 18
+				},
+				{
+					"name": "wangwu",
+					"age": 19
+				},
+				{
+					"name": "zhangsan",
+					"age": 18
+				},
+				{
+					"name": "lisi",
+					"age": 20
+				}
+			]
+		}])
+		myapp.controller("funCtrl", ["$scope", function($scope) {
+			$scope.title = "功能的内容";
+		}])
+		myapp.controller("detailsCtrl", ["$scope", "$routeParams", function($scope,$routeParams) {
+			$scope.name = $routeParams.name;
+			$scope.data = {
+				"lily":{"Math":100,"Chinese":88},
+				"wangwu":{"Math":88,"Chinese":78},
+				"zhangsan":{"Math":89,"Chinese":97},
+				"lisi":{"Math":98,"Chinese":75}
+			}
+		}])
+		myapp.controller("ctrl", ["$scope", function($scope) {
+
+		}])
+	</script>
+</html>

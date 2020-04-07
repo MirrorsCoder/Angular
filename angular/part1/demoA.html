@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<table class="table table-bordered">
+				<thead>
+					<tr>
+						<th>序号</th>
+						<th>姓名</th>
+						<th>年龄</th>
+						<th>是否第一项</th>
+						<th>是否最后一项</th>
+						<th>中间项</th>
+						<th>奇数项项</th>
+						<th>偶数项</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="item in list">
+						<td>{{$index}}</td>
+						<td>{{item.name}}</td>
+						<td>{{item.age}}</td>
+						<td>{{$first}}</td>
+						<td>{{$last}}</td>
+						<td>{{$middle}}</td>
+						<td>{{$odd}}</td>
+						<td>{{$even}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			$scope.list=[
+				{"name":"张三","age":18},
+				{"name":"李四","age":18},
+				{"name":"王五","age":18},
+				{"name":"张六","age":18},
+				{"name":"王七","age":18},
+				{"name":"李八","age":18}
+			]
+		}])
+	</script>
+</html>

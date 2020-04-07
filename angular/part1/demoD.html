@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div ng-switch="switchCons">
+			<h1 ng-switch-when="1">这是选项1的内容</h1>
+			<h1 ng-switch-when="2">这是选项2的内容</h1>
+			<h1 ng-switch-when="3">这是选项3的内容</h1>
+			<h1 ng-switch-when="4">这是选项4的内容</h1>
+			<h1 ng-switch-default>这是默认内容</h1>
+		</div>
+		<span class="btn btn-danger" ng-click="switchCons=1">选项一</span>
+		<span class="btn btn-danger" ng-click="switchCons=2">选项二</span>
+		<span class="btn btn-danger" ng-click="switchCons=3">选项三</span>
+		<span class="btn btn-danger" ng-click="switchCons=4">选项四</span>
+		<span class="btn btn-danger" ng-click="switchCons=0">默认选项</span>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			$scope.switchCons=0;
+		}])
+	</script>
+</html>

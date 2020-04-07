@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<h1>表单控件</h1>
+			<form class="form-horizontal" name="myForm">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">用户名</label>
+					<div class="col-sm-5">
+						<input type="text" name="User" ng-model="UserName" class="form-control" ng-minlength="8" ng-maxlength="12" ng-required="true">
+					</div>
+					<div class="col-sm-5">
+						<!-- $invalid:是否无效 $valid:是否有效  ng-required="true":必选项 -->
+						<!-- <p class="form-control-static" ng-show="myForm.User.$invalid">请输入8-12位的用户名</p> -->
+						<p class="form-control-static" ng-hide="myForm.User.$valid">请输入8-12位的用户名</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">手机号</label>
+					<div class="col-sm-5">
+						<input type="tel" class="form-control" ng-model="tel" name="tel" ng-pattern="/1[3578][0-9]{9}/" ng-required="true">
+					</div>
+					<div class="col-sm-5">
+						<!-- <p class="form-control-static" ng-show="myForm.tel.$invalid">请输入正确的手机号</p> -->
+						<p class="form-control-static" ng-show="myForm.tel.$error.required">手机号不能为空</p>
+						<p class="form-control-static" ng-show="myForm.tel.$error.pattern">请输入正确的手机号</p>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-offset-2 col-sm-10">
+						<button type="submit" class="btn btn-primary" ng-disabled="myForm.$invalid">Sign in</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", function($scope) {
+
+		}])
+	</script>
+</html>

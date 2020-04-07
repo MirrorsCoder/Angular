@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<input type="text" ng-model="title" />
+			<input type="text" ng-model="title2" />
+			<span class="btn btn-primary" ng-click="change()">点击</span>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			$scope.title="a";
+			$scope.title2="b";
+			//oldVal ----> "title==title2" ==> false
+			// $scope.$watch("title==title2",function(newVal,oldVal,scope){
+			// 	console.log(newVal+","+oldVal);
+			// })
+			$scope.user={
+				"name":"张三",
+				"age":20
+			}
+			$scope.change=function(){
+				$scope.user.age=25;
+			}
+			$scope.$watch("user",function(newVal,oldVal,scope){
+				console.log(JSON.stringify(newVal));
+			},true)//深度监听 对象类型
+		}])
+	</script>
+</html>

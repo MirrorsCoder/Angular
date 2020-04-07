@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<h1>{{num}}</h1>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope","calc",function($scope,calc){
+			$scope.num=calc.sum(2,3);
+		}])
+		myapp.config(["calcProvider",function(calcProvider){
+			console.log(calcProvider.msg);
+			//calcProvider.alertMsg();
+			//console.log(calcProvider.sum(1,2));//config无法使用$get中定义的变量和方法
+		}])
+		myapp.provider("calc",[function(){
+			this.msg="hello";
+			this.alertMsg=function(){
+				alert("111");
+			}
+			//上面的变量或方法只能在config函数里面使用
+			//$get里面的可以在控制器和其他服务里面使用
+			this.$get=function(){
+				return{
+					sum:function(a,b){
+						return a+b;
+					}
+				}
+			}
+		}])
+	</script>
+</html>

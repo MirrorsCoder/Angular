@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<div class="container">
+			<input type="text" class="form-control" ng-model="search" />
+			<!-- 			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="l in list|filter:search">
+					<p>{{l.name}}-{{l.Math}}-{{l.Chinese}}-{{l.English}}</p>
+				</li>
+			</ul> -->
+			<!-- 			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="l in list|filter:{'Math':search}">
+					<p>{{l.name}}-{{l.Math}}-{{l.Chinese}}-{{l.English}}</p>
+				</li>
+			</ul> -->
+			<!-- 			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="l in list|filter:{'$':search}">
+					<p>{{l.name}}-{{l.Math}}-{{l.Chinese}}-{{l.English}}</p>
+				</li>
+			</ul> -->
+			<ul class="list-group">
+				<li class="list-group-item" ng-repeat="l in list|filter:search:true"><!--true精确匹配-->
+					<p>{{l.name}}-{{l.Math}}-{{l.Chinese}}-{{l.English}}</p>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", function($scope) {
+			$scope.list = [{
+					"name": "zhangsan",
+					"Math": "88",
+					"Chinese": "98",
+					"English": "89"
+				},
+				{
+					"name": "lisi",
+					"Math": "88",
+					"Chinese": "88",
+					"English": "98"
+				},
+				{
+					"name": "wangwu",
+					"Math": "89",
+					"Chinese": "98",
+					"English": "86"
+				},
+				{
+					"name": "lily",
+					"Math": "86",
+					"Chinese": "78",
+					"English": "77"
+				},
+				{
+					"name": "hanmeimei",
+					"Math": "86",
+					"Chinese": "88",
+					"English": "79"
+				},
+				{
+					"name": "lilei",
+					"Math": "78",
+					"Chinese": "96",
+					"English": "69"
+				}
+			]
+		}])
+	</script>
+</html>

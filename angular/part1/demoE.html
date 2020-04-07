@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<h1>父级标题-{{myTitle}}</h1>
+		<span class="btn btn-primary" ng-click="changeTitle()">点击切换标题</span>
+		<div ng-controller="innerCtrl">
+			<h1>子级标题-{{myTitle}}</h1>
+			<span class="btn btn-primary" ng-click="changeTitle()">点击切换标题</span>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			$scope.myTitle="父级标题";
+			$scope.changeTitle=function(){
+				$scope.myTitle="父级标题2";
+			}
+		}]),
+		myapp.controller("innerCtrl",["$scope",function($scope){
+			$scope.myTitle="子级标题";
+			$scope.changeTitle=function(){
+				$scope.myTitle="子级标题2";
+			}
+		}])
+	</script>
+</html>

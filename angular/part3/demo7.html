@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<h1>{{title}}</h1>
+		<input type="text" ng-model="name" />
+		<hello-dir out-cons="name" out-fn="outFunction()"></hello-dir>
+	</body>
+	<script>
+		var myapp = angular.module("app", []);
+		myapp.controller("ctrl", ["$scope", function($scope) {
+			$scope.name = "zhangsan";
+			$scope.outFunction=function(){
+				alert(111);
+			}
+		}])
+		myapp.directive("helloDir", [function() {
+			return {
+				"restrict": "E",
+				"templateUrl": "tpl/2.html",
+				"scope":{
+					"innerCons":"=outCons",
+					"innerFuns":"&outFn"
+				}
+			}
+		}])
+	</script>
+</html>

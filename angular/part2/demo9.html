@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+		<script src="../js/angular-route.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<nav class="navbar navbar-inverse">
+			<ul class="nav navbar-nav">
+				<li><a href="#!/">首页</a></li>
+				<li><a href="#!/list">列表</a></li>
+				<li><a href="#!/function">功能</a></li>
+			</ul>
+		</nav>
+		<div class="container">
+			<div ng-view></div>
+		</div>
+	</body>
+	<script>
+		var myapp = angular.module("app",["ngRoute"]);<!--增加路由模块-->
+		myapp.config(["$routeProvider",function($routeProvider){
+			$routeProvider.when("/",{
+				"template":"<h1>首页的内容</h1>"
+			}).when("/list",{
+				"template":"<h1>列表的内容</h1>"
+			}).when("/function",{
+				"template":"<h1>功能的内容</h1>"
+			}).otherwise("/");
+		}])
+		myapp.controller("ctrl",["$scope",function($scope){
+			
+		}])
+	</script>
+</html>

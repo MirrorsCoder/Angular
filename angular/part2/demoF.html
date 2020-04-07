@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/angular.js"></script>
+	</head>
+	<body ng-controller="ctrl">
+		<hello-dir></hello-dir>
+		<div hello-dir></div>
+		<div class="hello-dir"></div>
+		<!--directive:hello-dir -->
+	</body>
+	<script>
+		var myapp = angular.module("app",[]);
+		myapp.controller("ctrl",["$scope",function($scope){
+			
+		}])
+		myapp.directive("helloDir",[function($scope){
+			return{
+				"restrict":"ECMA",//E:标签 C:类名 M:注释 A:属性
+				"template":"<div><h1>Hello,directive!</h1><h2>^_^</h2></div>",
+				"replace":true
+			}
+		}])
+	</script>
+</html>
